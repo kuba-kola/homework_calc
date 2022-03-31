@@ -37,7 +37,7 @@ const calculate = () => {
     break;
     case '÷':
       if(current === 0) {
-        clearResult();
+        clearRes();
         return 0;
       }
 
@@ -60,7 +60,7 @@ const selectOperations = (operator) => {
     const previous = previousRes.innerText;
 
     if(currentNumber.toString() === '0' &&  previous[previous.length - 1] === '÷') {
-      clearResult();
+      clearRes();
       return;
     }
 
@@ -85,7 +85,23 @@ const enterNumber = (num) => {
 
 const deleteLastNumber = () => {
   currentNumber = currentNumber.toString().slice(0, -1)
-}  
+}
+  
+const updRes = () => {
+  currentRes.innerText = currentNumber
+
+  if(operation != null) {
+    previousRes.innerText = lastNumber + operation
+  } else {
+    previousRes.innerText = ''
+  }
+}
+
+const clearRes = () => {
+  currentNumber = ''
+  operation = undefined
+  lastNumber = ''
+}
 
 numbersBtn.forEach((btn) => {
   btn.addEventListener('click', () => {
@@ -112,6 +128,6 @@ deleteBtn.addEventListener('click', () => {
 })
   
 clearBtn.addEventListener('click', () => {
-  clearResult()
+  clearRes()
   updRes()
 })
