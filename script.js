@@ -52,6 +52,26 @@ const calculate = () => {
   lastNumber = '';  
 }
 
+const selectOperations = (operator) => {
+  if(currentNumber === '') {
+    return;
+  }
+  if(lastNumber !== '') {
+    const previous = previousRes.innerText;
+
+    if(currentNumber.toString() === '0' &&  previous[previous.length - 1] === '÷') {
+      clearResult();
+      return;
+    }
+
+    calculate();
+  }
+
+  operation = operator;
+  lastNumber = currentNumber;
+  currentNumber = '';
+}
+
 numbersBtn.forEach((btn) => {
   btn.addEventListener('click', () => {
     enterNumber(btn.innerText);
