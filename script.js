@@ -4,8 +4,8 @@ const deleteBtn = document.querySelector('.delete');
 const equalsBtn = document.querySelector('.equals');
 const clearBtn = document.querySelector('.clear');
 const signChangeBtn = document.querySelector('.change-sign');
-const currentRes = document.querySelector('[data-current-result]');
-const previousRes = document.querySelector('[data-previous-result]');
+const currentRes = document.querySelector('.current-result');
+const previousRes = document.querySelector('.previous-result');
 
 let currentNumber = '';
 let lastNumber = '';
@@ -37,20 +37,21 @@ const calculate = () => {
       break;
     case '÷':
       if(current === 0) {
-        clearRes();
-        return;
+        clearRes()
+        return;        
       }
 
       calculation = previous / current;
-      break;
-    case '%':
-      calculation = previous / 100;
-      break;        
+      break;           
     default:
       return;
   }
 
-  currentNumber = calculation;
+  if (Number.isInteger(calculation)) {
+    currentNumber = calculation;
+  } else {
+    currentNumber = calculation.toFixed(8);
+  }  
   operation = undefined;
   lastNumber = '';  
 }
@@ -76,22 +77,18 @@ const selectOperations = (operator) => {
 }
 
 const enterNumber = (num) => {
-  if(num === '•') {
+  if(num === '.') {
     if(currentNumber.includes('.')) {
       return
     }
-    num = '.'
+    num = '.';
   }
 
-  currentNumber = currentNumber.toString() + num.toString()
+  currentNumber = currentNumber.toString() + num.toString();
 }
 
 const changeSign = () => {
-  if (previousRes.value === "-") {
-    previousRes.value = previousRes.value.slice(1);
-  } else {
-    previousRes.value = "-" + previousRes.value;
-  }
+  currentNumber = currentNumber * -1;
 }
 
 const deleteLastNumber = () => {
