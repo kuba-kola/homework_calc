@@ -28,21 +28,24 @@ const calculate = () => {
   switch (operation) {
     case '+':
       calculation = previous + current;
-    break;
+      break;
     case '-':
       calculation = previous - current;
-    break;
+      break;
     case '*':
       calculation = previous * current;
-    break;
+      break;
     case '÷':
       if(current === 0) {
         clearRes();
-        return 0;
+        return;
       }
 
       calculation = previous / current;
-    break;        
+      break;
+    case '%':
+      calculation = previous / 100;
+      break;        
     default:
       return;
   }
@@ -60,9 +63,9 @@ const selectOperations = (operator) => {
     const previous = previousRes.innerText;
 
     if(currentNumber.toString() === '0' &&  previous[previous.length - 1] === '÷') {
-      clearRes();
+     clearRes();
       return;
-    }
+    } 
 
     calculate();
   }
@@ -83,24 +86,32 @@ const enterNumber = (num) => {
   currentNumber = currentNumber.toString() + num.toString()
 }
 
+const changeSign = () => {
+  if (previousRes.value === "-") {
+    previousRes.value = previousRes.value.slice(1);
+  } else {
+    previousRes.value = "-" + previousRes.value;
+  }
+}
+
 const deleteLastNumber = () => {
-  currentNumber = currentNumber.toString().slice(0, -1)
+  currentNumber = currentNumber.toString().slice(0, -1);
 }
   
 const updRes = () => {
-  currentRes.innerText = currentNumber
+  currentRes.innerText = currentNumber;
 
   if(operation != null) {
-    previousRes.innerText = lastNumber + operation
+    previousRes.innerText = lastNumber + operation;
   } else {
-    previousRes.innerText = ''
+    previousRes.innerText = '';
   }
 }
 
 const clearRes = () => {
-  currentNumber = ''
-  operation = undefined
-  lastNumber = ''
+  currentNumber = '';
+  operation = undefined;
+  lastNumber = '';
 }
 
 numbersBtn.forEach((btn) => {
@@ -112,22 +123,27 @@ numbersBtn.forEach((btn) => {
   
 operationsBtn.forEach((btn) => {
   btn.addEventListener('click', () => {
-    selectOperations(btn.innerText)
-    updRes()
+    selectOperations(btn.innerText);
+    updRes();
   })
 })
   
 equalsBtn.addEventListener('click', () => {
-  calculate()
-  updRes()
+  calculate();
+  updRes();
+})
+
+signChangeBtn.addEventListener('click', () => {
+  changeSign();
+  updRes();
 })
   
 deleteBtn.addEventListener('click', () => {
-  deleteLastNumber()
-  updRes()
+  deleteLastNumber();
+  updRes();
 })
   
 clearBtn.addEventListener('click', () => {
-  clearRes()
-  updRes()
+  clearRes();
+  updRes();
 })

@@ -22,7 +22,7 @@
   .calculator-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 1px solid #DEB887;
+    border: 2px solid #DEB887;
     outline: none;
     background-color: #DCDCDC;
   }
@@ -42,7 +42,7 @@
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
-    border: 1px solid #DEB887;
+    border: 5px solid #DEB887;
   }
   
   .output .previous-result {
@@ -53,4 +53,8 @@
   .output .current-result {
     color: white;
     font-size: 2.5rem;
+  }
+
+  .clear {
+    grid-column: span 2;
   }
