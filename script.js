@@ -72,6 +72,21 @@ const selectOperations = (operator) => {
   currentNumber = '';
 }
 
+const enterNumber = (num) => {
+  if(num === '•') {
+    if(currentNumber.includes('.')) {
+      return
+    }
+    num = '.'
+  }
+
+  currentNumber = currentNumber.toString() + num.toString()
+}
+
+const deleteLastNumber = () => {
+  currentNumber = currentNumber.toString().slice(0, -1)
+}  
+
 numbersBtn.forEach((btn) => {
   btn.addEventListener('click', () => {
     enterNumber(btn.innerText);
