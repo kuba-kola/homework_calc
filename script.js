@@ -11,74 +11,31 @@ let currentNumber = '';
 let lastNumber = '';
 let operation = undefined;
 
-numbersBtn.forEach((button) => {
-    button.addEventListener('click', enterNumber);
-});
-operationsBtn.forEach((button) => {
-    button.addEventListener('click', enterOperation);
-});
-deleteBtn.forEach('click', deleteLastNumber);
-equalsBtn.forEach('click', enterEquals);
-clearBtn.forEach('click', clearAll);
-signChangeBtn.forEach('click', signChange);
-
-const calculate = () => {
-    let calculation;
-
-    if(!lastNumber || !currentNumber) {
-      return;
-    }
+numbersBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    enterNumber(btn.innerText);
+    updRes();
+  })
+})
   
-    const previous = parseFloat(lastNumber);
-    const current = parseFloat(currentNumber);
+operationsBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    selectOperations(btn.innerText)
+    updRes()
+  })
+})
   
-    if(isNaN(previous) || isNaN(current)) {
-      return;
-    }
+equalsBtn.addEventListener('click', () => {
+  calculate()
+  updRes()
+})
   
-    switch (operation) {
-      case '+':
-        calculation = previous + current;
-        break;
-        case '-':
-          calculation = previous - current;
-        break;
-        case '*':
-          calculation = previous * current;
-        break;
-        case '÷':
-          if(current === 0) {
-            clearResult();
-            return;
-          }
+deleteBtn.addEventListener('click', () => {
+  deleteLastNumber()
+  updRes()
+})
   
-          calculation = previous / current;
-        break;        
-      default:
-        return;
-    }
-
-    currentNumber = calculation;
-    operation = undefined;
-    lastNumber = '';  
-}
-
-const selectOperations = (operator) => {
-    if(currentNumber === '') {
-      return;
-    }
-    if(lastNumber !== '') {
-      const previous = previousRes.innerText;
-
-      if(currentNumber.toString() === '0' &&  previous[previous.length - 1] === '÷') {
-        clearResult();
-        return;
-      }
-
-      calculate();
-    }
-  
-    operation = operator;
-    lastNumber = currentNumber;
-    currentNumber = '';
-}
+clearBtn.addEventListener('click', () => {
+  clearResult()
+  updRes()
+})

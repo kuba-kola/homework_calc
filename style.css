@@ -45,12 +45,12 @@
     border: 1px solid #DEB887;
   }
   
-  .output .previous-operand {
+  .output .previous-result {
     color: rgba(255, 255, 255, .75);
     font-size: 1.5rem;
   }
   
-  .output .current-operand {
+  .output .current-result {
     color: white;
     font-size: 2.5rem;
   }
