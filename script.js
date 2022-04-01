@@ -9,7 +9,7 @@ const previousRes = document.querySelector('.previous-result');
 
 let currentNumber = '';
 let lastNumber = '';
-let operation = undefined;
+let operation;
 
 const calculate = () => {
   let calculation;
@@ -17,31 +17,32 @@ const calculate = () => {
   if(!lastNumber || !currentNumber) {
     return;
   }
+  
+  const arg1 = parseFloat(lastNumber);
+  const arg2 = parseFloat(currentNumber);   
 
-  const previous = parseFloat(lastNumber);
-  const current = parseFloat(currentNumber);
-
-  if(isNaN(previous) || isNaN(current)) {
+  if(isNaN(arg1) || isNaN(arg2)) {
     return;
   }
 
   switch (operation) {
     case '+':
-      calculation = previous + current;
+      calculation = arg1 + arg2;
       break;
     case '-':
-      calculation = previous - current;
+      calculation = arg1 - arg2;
       break;
     case '*':
-      calculation = previous * current;
+      calculation = arg1 * arg2;
       break;
     case '÷':
-      if(current === 0) {
+      if(arg2 === 0) {
+        alert(`Ошибка! Нельзя делить на ноль!`)
         clearRes()
         return;        
       }
 
-      calculation = previous / current;
+      calculation = arg1 / arg2;
       break;           
     default:
       return;
@@ -61,9 +62,9 @@ const selectOperations = (operator) => {
     return;
   }
   if(lastNumber !== '') {
-    const previous = previousRes.innerText;
+    const arg1 = previousRes.innerText;
 
-    if(currentNumber.toString() === '0' &&  previous[previous.length - 1] === '÷') {
+    if(currentNumber.toString() === '0' &&  arg1[arg1.length - 1] === '÷') {
      clearRes();
       return;
     } 
@@ -81,6 +82,7 @@ const enterNumber = (num) => {
     if(currentNumber.includes('.')) {
       return
     }
+    
     num = '.';
   }
 
