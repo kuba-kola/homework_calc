@@ -1,11 +1,34 @@
-const numbersBtn = document.querySelectorAll('.numbers');
-const operationsBtn = document.querySelectorAll('.operations');
-const deleteBtn = document.querySelector('.delete');
-const equalsBtn = document.querySelector('.equals');
-const clearBtn = document.querySelector('.clear');
-const signChangeBtn = document.querySelector('.change-sign');
 const currentRes = document.querySelector('.current-result');
 const previousRes = document.querySelector('.previous-result');
+
+document.querySelectorAll('.numbers').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    enterNumber(btn.innerText);
+    updRes();
+  });
+});
+document.querySelectorAll('.operations').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    selectOperations(btn.innerText);
+    updRes();
+  });
+});  
+document.querySelector('.delete').addEventListener('click', () => {
+  deleteLastNumber();
+  updRes();
+});  
+document.querySelector('.equals').addEventListener('click', () => {
+  calculate();
+  updRes();
+});  
+document.querySelector('.clear').addEventListener('click', () => {
+  clearRes();
+  updRes();
+});
+document.querySelector('.change-sign').addEventListener('click', () => {
+  changeSign();
+  updRes();
+});
 
 let currentNumber = '';
 let lastNumber = '';
@@ -82,7 +105,7 @@ const enterNumber = (num) => {
     if(currentNumber.includes('.')) {
       return
     }
-    
+
     num = '.';
   }
 
@@ -112,37 +135,3 @@ const clearRes = () => {
   operation = undefined;
   lastNumber = '';
 }
-
-numbersBtn.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    enterNumber(btn.innerText);
-    updRes();
-  })
-})
-  
-operationsBtn.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    selectOperations(btn.innerText);
-    updRes();
-  })
-})
-  
-equalsBtn.addEventListener('click', () => {
-  calculate();
-  updRes();
-})
-
-signChangeBtn.addEventListener('click', () => {
-  changeSign();
-  updRes();
-})
-  
-deleteBtn.addEventListener('click', () => {
-  deleteLastNumber();
-  updRes();
-})
-  
-clearBtn.addEventListener('click', () => {
-  clearRes();
-  updRes();
-})
