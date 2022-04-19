@@ -1,13 +1,13 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-family: Trebuchet MS, sans-serif;
     font-weight: normal;
   }
   
   body {
     padding: 0;
     margin: 0;
-    background: #48D1CC;
+    background:linear-gradient(to right, #48D1CC, #F0E68C);
   }
   
   .calculator-grid {
@@ -22,9 +22,9 @@
   .calculator-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 2px solid #DEB887;
+    border: 1px solid #FA8072;
     outline: none;
-    background-color: #DCDCDC;
+    background-color: #FFF0F5;
   }
   
   .calculator-grid > button:hover {
@@ -34,7 +34,7 @@
   
   .output {
     grid-column: 1 / -1;
-    background-color: #778899;
+    background-color: #A9A9A9;
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
@@ -42,16 +42,16 @@
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
-    border: 5px solid #DEB887;
+    border: 3px solid #FA8072;
   }
   
   .output .previous-result {
-    color: rgba(255, 255, 255, .75);
+    color: #2F4F4F;
     font-size: 1.5rem;
   }
   
   .output .current-result {
-    color: white;
+    color: #000000;
     font-size: 2.5rem;
   }
 
