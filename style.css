@@ -22,9 +22,9 @@
   .calculator-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 1px solid #FA8072;
+    border: 1px solid #808080;
     outline: none;
-    background-color: #FFF0F5;
+    background-color: #D3D3D3;
   }
   
   .calculator-grid > button:hover {
@@ -42,7 +42,7 @@
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
-    border: 3px solid #FA8072;
+    border: 3px solid #808080;
   }
   
   .output .previous-result {
